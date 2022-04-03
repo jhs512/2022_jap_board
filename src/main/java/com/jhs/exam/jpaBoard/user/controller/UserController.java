@@ -19,6 +19,24 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @RequestMapping("doLogout")
+    @ResponseBody
+    public String doLogout(HttpSession session) {
+        boolean isLogined = false;
+
+        if (session.getAttribute("loginedUserId") != null) {
+            isLogined = true;
+        }
+
+        if (isLogined == false) {
+            return "이미 로그아웃 되었습니다.";
+        }
+
+        session.removeAttribute("loginedUserId");
+
+        return "로그아웃 되었습니다.";
+    }
+
     @RequestMapping("doLogin")
     @ResponseBody
     public String doLogin(String email, String password, HttpServletRequest req, HttpServletResponse resp) {
@@ -99,7 +117,6 @@ public class UserController {
             isLogined = true;
             loginedUserId = (long) session.getAttribute("loginedUserId");
         }
-
 
         if (isLogined == false) {
             return null;
