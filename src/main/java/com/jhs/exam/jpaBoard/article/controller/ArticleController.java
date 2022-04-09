@@ -6,6 +6,7 @@ import com.jhs.exam.jpaBoard.user.dao.UserRepository;
 import com.jhs.exam.jpaBoard.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,7 +23,10 @@ public class ArticleController {
     private UserRepository userRepository;
 
     @RequestMapping("list")
-    public String showList() {
+    public String showList(Model model) {
+        model.addAttribute("age", 44);
+        model.addAttribute("name", "폴");
+
         return "usr/article/list";
     }
 
