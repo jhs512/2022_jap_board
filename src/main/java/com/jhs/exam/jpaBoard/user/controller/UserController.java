@@ -21,7 +21,6 @@ public class UserController {
     private UserRepository userRepository;
 
     @RequestMapping("doLogout")
-    @ResponseBody
     public String doLogout(HttpSession session) {
         boolean isLogined = false;
 
@@ -30,12 +29,12 @@ public class UserController {
         }
 
         if (isLogined == false) {
-            return "이미 로그아웃 되었습니다.";
+            return "redirect:/";
         }
 
         session.removeAttribute("loginedUserId");
 
-        return "로그아웃 되었습니다.";
+        return "redirect:/";
     }
 
     @RequestMapping("login")
