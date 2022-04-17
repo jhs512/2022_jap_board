@@ -107,7 +107,7 @@ public class UserController {
         return """
                 <script>
                 alert('%s님 환영합니다.');
-                history.back();
+                location.replace('/');
                 </script>
                 """.formatted(user.get().getName());
     }
